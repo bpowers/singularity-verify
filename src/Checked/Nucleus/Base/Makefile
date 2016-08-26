@@ -1,5 +1,5 @@
 TOOLS     = $(HOME)/src/Ironclad/ironclad-apps/tools
-BEAT      = mono $(TOOLS)/Beat/bin/beat.exe
+BEAT      = mono $(HOME)/src/singularity/verify/tools/Beat/bin/beat.exe
 BOOGIEASM = mono $(TOOLS)/BoogieAsm/bin/boogieasm.exe
 BOOGIE    = boogie
 MKDIR     = mkdir -p
@@ -18,15 +18,13 @@ $(OBJ):
 
 build: $(OBJ)
 	cp Util_i.bpl $(OBJ)/Util_i.bpl
-	$(BEAT) -out $(OBJ)/Util.bpl -in Util.beat
-
-	cp Util_i.bpl $(OBJ)/Util_i.bpl
-	$(BEAT) -out $(OBJ)/Util.bpl -in Util.beat
+	$(BEAT) >$(OBJ)/Util.bpl <Util.beat
 
 	cp $(SPEC)/Overflow_i.bpl $(OBJ)/Overflow_i.bpl
-	$(BEAT) -out $(OBJ)/Overflow.bpl -in Overflow.beat
-	$(BEAT) -out $(OBJ)/Separation_i.bpl -in Separation_i.beat
-	$(BEAT) -out $(OBJ)/Separation.bpl   -in Separation.beat separation_i.beat
+	$(BEAT) >$(OBJ)/Overflow.bpl <Overflow.beat
+
+	$(BEAT) >$(OBJ)/Separation_i.bpl <Separation_i.beat
+	$(BEAT) >$(OBJ)/Separation.bpl   <Separation.beat separation_i.beat
 
 # _boogie -out $(OBJ)/Util_i.v $(SPECS) $(AXIOMS) $(OBJ)/Util_i.bpl
 # _boogie -out $(OBJ)/Util.v   $(SPECS) $(AXIOMS) $(OBJ)/Util_i.bpl $(SPEC)/word_axioms.bpl $(OBJ)/Util.bpl

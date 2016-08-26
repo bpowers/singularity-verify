@@ -57,3 +57,18 @@ let code (c : char) : int =
         raise <| System.ArgumentException "Char.code"
 
     int c
+
+let private test_null arg =
+    match arg with
+    | null ->
+        raise <| System.ArgumentNullException "arg"
+    | _ -> ()
+
+let lowercase (s : string) =
+    test_null s
+    s.ToLowerInvariant ()
+
+let uncapitalize (s : string) =
+    test_null s
+    if s.Length = 0 then ""
+    else (lowercase s.[0..0]) + s.[1 .. s.Length - 1]
