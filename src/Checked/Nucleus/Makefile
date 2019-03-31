@@ -28,5 +28,4 @@ $(OBJ)/nucleus_ms.asm: Base GC Main
 $(OBJ)/nucleus_cp.asm: Base GC Main
 	$(BOOGIEASM) -out $(OBJ)/nucleus_cp.asm $(OBJS) $(OBJ)/Main/EntryCP.bpl
 
-
 .PHONY: all Base GC Main

@@ -1,8 +1,9 @@
-TOOLS     = $(HOME)/src/Ironclad/ironclad-apps/tools
-BEAT      = mono $(HOME)/src/singularity/verify/tools/Beat/bin/beat.exe
-BOOGIEASM = mono $(TOOLS)/BoogieAsm/bin/boogieasm.exe
-BOOGIE    = boogie
-MKDIR     = mkdir -p
+ROOT = ../../../..
+
+include $(ROOT)/build.mk
+
+BUILD = $(ROOT)/../base/build
+OBJROOT = $(ROOT)/obj
 
 OBJ    = obj/Checked/Nucleus/Base
 
